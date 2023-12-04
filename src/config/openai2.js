@@ -2,9 +2,9 @@ import OpenAI from 'openai';
 import miModelo from '../models/users.js';
 
 // Configurar tu clave de API
-const apiKey = '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'; 
+const apiKey = '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'; 
 
-// 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 clave Andre
+// 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 clave Andre
 
 
 // Crear una instancia de OpenAIApi con tu clave API
@@ -22,20 +22,32 @@ async function responseOpenApiAI(request, response) {
       return response.status(404).json({ message: 'ID no encontrado en la base de datos' });
     }
 
-    const mensajeUsuario = `Tu eres un experto en campañas publicitarias y estás ayudando a una empresa a crear su Transmedia Storytelling que represente la identidad de la marca y la importancia de su servicio/producto. Estos son los datos del cliente:
+    const mensajeUsuario = `####Contexto##### 
+
+    Tu eres un experto en campañas publicitarias y estás ayudando a una empresa a crear su Transmedia Storytelling que represente la identidad de la marca y la importancia de su servicio/producto. Estos son los datos del cliente: 
+    
     Nombre de la campaña: {name}
     Nombre de la Marca: {company}
     Descripción del producto: {mission}
-    Crea un Storytelling en que el tono comunicativo és: {keywords} a demostrar que la marca representada tiene un posicionamiento de qué: {archetype_description}. Con base en los siguientes requisitos narrativos:
+    
+    #########Instrucción##########: 
+    Crea un Storytelling en que el tono comunicativo és: {keywords}
+    
+    a demostrar que la marca representada tiene un posicionamiento de qué: {archetype_description}. Con base en los siguientes requisitos narrativos: 
+    
     El protagonista de la historia es {protagonista}
     El género del protagonista es {gender}
     El protagonista tiene como objetivo {objective}
-    Pero, {bad} impide el protagonista a cumplir su objetivo
-    {helper} ayuda el protagonista
+    Pero, {bad} impide el protagonista a cumplir su objetivo 
+    {helper} ayuda el protagonista 
     La actitud que tiene el ayudante es {helper_characteristic}
     En el fin, {message}
-    Primero, escribe el storytelling 3 párrafos de 250 caracteres cada uno.
-    Segundo, escribe otro texto más corto de 180 caracteres conteniendo hashtags y emojis, para divulgación en las redes sociales de la misma narrativa. Debe contener el {enlace} enlace en el fin del texto. 
+    
+    #########Forma##########: 
+    
+    Primero, escribe el storytelling 3 párrafos de 250 caracteres cada uno. 
+    
+    Segundo, escribe otro texto más corto de 180 caracteres conteniendo hashtags y emojis, para divulgación en las redes sociales de la misma narrativa. 
     Sábio: quiero que el texto me haga sentir que leo la verdad absoluta.(descripción arquetipo)
     Palabras Clave: Conocedor, Confiable, Poderoso.
     Inocente: Quiero que el texto me hagas sentir que todo es bello y feliz (descripción arquetipo)
